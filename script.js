@@ -47,7 +47,6 @@ const addBook = () => {
     inputBookIsComplete
   );
   bookList.push(bookObject);
-  console.log(inputBookIsComplete);
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 };

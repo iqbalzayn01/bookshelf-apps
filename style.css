@@ -4,11 +4,14 @@
     box-sizing: border-box;
 }
 
-body, input, button {
+body,
+input,
+button {
     font-family: 'Open Sans', sans-serif;
 }
 
-input, button {
+input,
+button {
     font-size: 16px;
 }
 
@@ -17,7 +20,7 @@ input, button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: cornflowerblue;
+    background-color: #0AB88A;
     color: white;
 }
 
@@ -37,17 +40,17 @@ main {
     border-radius: 10px;
 }
 
-.input_section > h2 {
+.input_section>h2 {
     text-align: center;
-    color: cornflowerblue;
+    color: #0AB88A;
 }
 
-.input_section > form > .input {
+.input_section>form>.input {
     margin: 8px 0;
 }
 
-.input_section > form > button {
-    background-color: cornflowerblue;
+.input_section>form>button {
+    background-color: #0AB88A;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -57,11 +60,11 @@ main {
     cursor: pointer;
 }
 
-.input_section > form > button > span {
+.input_section>form>button>span {
     font-weight: bold;
 }
 
-.input_section > form > .input > input {
+.input_section>form>.input>input {
     display: block;
     width: 100%;
     padding: 8px;
@@ -69,19 +72,19 @@ main {
 }
 
 
-.input_section > form > .input > label {
-    color: cornflowerblue;
+.input_section>form>.input>label {
+    color: #0AB88A;
     font-weight: bold;
 }
 
-.input_section > form > .input_inline {
+.input_section>form>.input_inline {
     margin: 12px 0;
     display: flex;
     align-items: center;
 }
 
-.input_section > form > .input_inline > label {
-    color: cornflowerblue;
+.input_section>form>.input_inline>label {
+    color: #0AB88A;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -96,11 +99,11 @@ main {
     border-radius: 10px;
 }
 
-.search_section > h2 {
-    color: cornflowerblue;
+.search_section>h2 {
+    color: #0AB88A;
 }
 
-.search_section > form {
+.search_section>form {
     padding: 16px;
     width: 100%;
     display: grid;
@@ -108,18 +111,18 @@ main {
     grid-gap: 10px;
 }
 
-.search_section > form > label {
+.search_section>form>label {
     display: flex;
     align-items: center;
 }
 
-.search_section > form > input {
+.search_section>form>input {
     padding: 5px;
     border-radius: 5px;
 }
 
-.search_section > form > button {
-    background-color: cornflowerblue;
+.search_section>form>button {
+    background-color: #0AB88A;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -133,26 +136,27 @@ main {
     border-radius: 10px;
 }
 
-.book_shelf > h2 {
-    color: cornflowerblue;
+.book_shelf>h2 {
+    color: #0AB88A;
 }
 
-.book_shelf > .book_list {
+.book_shelf>.book_list {
     padding: 16px;
 }
 
-.book_shelf > .book_list > .book_item {
+.book_shelf>.book_list>.book_item {
     padding: 8px 16px 16px 16px;
     border: 1px solid black;
     border-radius: 5px;
     margin: 10px 0;
 }
 
-.book_shelf > .book_list > .book_item > h3, p {
+.book_shelf>.book_list>.book_item>h3,
+p {
     margin: 8px 0;
 }
 
-.book_shelf > .book_list > .book_item > .action > button {
+.book_shelf>.book_list>.book_item>.action>button {
     border: 0;
     padding: 5px;
     margin: 0 5px 0 0;
@@ -160,12 +164,12 @@ main {
     cursor: pointer;
 }
 
-.book_shelf > .book_list > .book_item > .action > .green {
-    background-color: darkgreen;
+.book_shelf>.book_list>.book_item>.action>.green {
+    background-color: #0AB88A;
     color: white;
 }
 
-.book_shelf > .book_list > .book_item > .action > .red {
-    background-color: darkred;
+.book_shelf>.book_list>.book_item>.action>.red {
+    background-color: #b8300a;
     color: white;
 }
