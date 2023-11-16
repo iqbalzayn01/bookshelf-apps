@@ -1,4 +1,5 @@
-const bookList = [];
+let bookList = [];
+console.log(bookList);
 const RENDER_EVENT = "render-event";
 const SAVED_EVENT = "saved-event";
 const STORAGE_KEY = "BOOKSHELF_APPS";
@@ -39,14 +40,21 @@ const addBook = () => {
   ).checked;
 
   const generateID = generateId();
-  const bookObject = generateBookObject(
-    generateID,
-    inputBookTitle,
-    inputBookAuthor,
-    inputBookYear,
-    inputBookIsComplete
+  const isDuplicatedTitle = bookList.some(
+    (book) => book.title === inputBookTitle
   );
-  bookList.push(bookObject);
+  if (isDuplicatedTitle) {
+    alert("Buku dengan judul yang sama sudah ada");
+  } else {
+    const bookObject = generateBookObject(
+      generateID,
+      inputBookTitle,
+      inputBookAuthor,
+      inputBookYear,
+      inputBookIsComplete
+    );
+    bookList.push(bookObject);
+  }
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 };
@@ -59,11 +67,11 @@ const generateId = () => {
 // Generate data buku ke object
 const generateBookObject = (id, title, author, year, isComplete) => {
   return {
-    id,
-    title,
-    author,
-    year,
-    isComplete,
+    id: id,
+    title: title,
+    author: author,
+    year: parseInt(year, 10),
+    isComplete: isComplete,
   };
 };
 
@@ -89,19 +97,28 @@ const makeBookElement = (bookObject) => {
     return btn;
   };
 
-  const btnGreen = createButton("green", "Selesai dibaca");
-  btnGreen.addEventListener("click", () => {
-    finishedReading(bookObject.id);
-  });
+  const btnWrap = document.createElement("div");
+  btnWrap.classList.add("action");
 
   const btnRed = createButton("red", "Hapus buku");
   btnRed.addEventListener("click", () => {
     removeBook(bookObject.id);
   });
 
-  const btnWrap = document.createElement("div");
-  btnWrap.classList.add("action");
-  btnWrap.append(btnGreen, btnRed);
+  if (bookObject.isComplete) {
+    const btnNotFinishedReading = createButton("green", "Belum selesai dibaca");
+    btnNotFinishedReading.addEventListener("click", () => {
+      notFinishedReading(bookObject.id);
+    });
+    btnWrap.append(btnNotFinishedReading, btnRed);
+  } else {
+    const btnFinishedReading = createButton("green", "Selesai dibaca");
+    btnFinishedReading.addEventListener("click", () => {
+      finishedReading(bookObject.id);
+    });
+
+    btnWrap.append(btnFinishedReading, btnRed);
+  }
 
   const article = document.createElement("article");
   article.classList.add("book_item");
@@ -115,6 +132,15 @@ const finishedReading = (bookId) => {
   const targetBook = findBook(bookId);
   if (targetBook == null) return;
   targetBook.isComplete = true;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
+};
+
+// Belum selesai baca
+const notFinishedReading = (bookId) => {
+  const targetBook = findBook(bookId);
+  if (targetBook == null) return;
+  targetBook.isComplete = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 };
@@ -194,9 +220,7 @@ const loadDataFromStorage = () => {
   let data = JSON.parse(serializedData);
 
   if (data !== null) {
-    for (const book of data) {
-      bookList.push(book);
-    }
+    bookList.push(...data);
   }
   document.dispatchEvent(new Event(RENDER_EVENT));
 };
